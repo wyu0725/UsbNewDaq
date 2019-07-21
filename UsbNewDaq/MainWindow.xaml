@@ -5,8 +5,121 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UsbNewDaq"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Closing="Window_Closing" HorizontalAlignment="Left" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Width="750" Height="700">
+    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+            <GroupBox x:Name="gbxUSBInstance" Header="USB Instance" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="470" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
+                <StackPanel>
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Label x:Name="lblDeviceLists" Content="USB Device:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="23" VerticalContentAlignment="Center"/>
+                            <Label x:Name="lblInEndPoint" Content="In EndPoint:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="25" Margin="0,5,0,0"/>
+                            <Label x:Name="lblOutEndPoint" Content="Out EndPoint:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="25" Margin="0,5,0,0"/>
+                            <Label x:Name="lblPpx" Content="Xfer package:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="25" Margin="0,5,0,0"/>
+                            <Label x:Name="lblXferQueue" Content="Xfer queue:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="25" Margin="0,5,0,0"/>
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" MinWidth="350">
+                            <ComboBox x:Name="cbxDeviceLists" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="25" SelectionChanged="cbxDeviceLists_SelectionChanged" MinWidth="250"/>
+                            <ComboBox x:Name="cbxInEndPoint" HorizontalAlignment="Left" Margin="0,5,-100,0" VerticalAlignment="Top" Width="200" Height="25"/>
+                            <ComboBox x:Name="cbxOutEndPoint" HorizontalAlignment="Left" Margin="0,5,-100,0" VerticalAlignment="Top" Width="200" Height="25"/>
+                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <ComboBox x:Name="cbxPpx" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="25" SelectionChanged="cbxPpx_SelectionChanged" Margin="0,5,0,0">
+                                        <ComboBoxItem Content="1"/>
+                                        <ComboBoxItem Content="2"/>
+                                        <ComboBoxItem Content="4"/>
+                                        <ComboBoxItem Content="8"/>
+                                        <ComboBoxItem Content="16"/>
+                                        <ComboBoxItem Content="32"/>
+                                        <ComboBoxItem Content="64"/>
+                                        <ComboBoxItem Content="128"/>
+                                        <ComboBoxItem Content="256"/>
+                                        <ComboBoxItem Content="512" IsSelected="True"/>
+                                        <ComboBoxItem Content="1024"/>
+                                    </ComboBox>
+                                    <ComboBox x:Name="cbxXferQueue" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="25" Margin="0,5,0,0">
+                                        <ComboBoxItem Content="1"/>
+                                        <ComboBoxItem Content="2"/>
+                                        <ComboBoxItem Content="4"/>
+                                        <ComboBoxItem Content="8"/>
+                                        <ComboBoxItem Content="16"/>
+                                        <ComboBoxItem Content="32" IsSelected="True"/>
+                                        <ComboBoxItem Content="64"/>
+                                        <ComboBoxItem Content="128"/>
+                                    </ComboBox>
+                                </StackPanel>
+
+                                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0">
+                                    <Button x:Name="btnSetUsb" Content="Set" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="25" Click="btnSetUsb_Click"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                    <Label x:Name="lblUsbName" Content="C# USB - no device" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="25" Foreground="Red"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox x:Name="gbxSendData" Header="Send Data" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="448">
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                    <StackPanel HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="100">
+                        <Label x:Name="lblCommandSource" Content="Source" Margin="0,15,0,0"/>
+                        <Label x:Name="lblCmdFileName" Content="FileName" Margin="0,5,0,0" Height="50" VerticalContentAlignment="Center"/>
+                        <Label x:Name="lblCommadInput" Content="Commad"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <RadioButton Name="rdbCmdSourceFile" Content="File" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" Checked="rdbCmdSourceFile_Checked"/>
+                            <RadioButton Name="rdbCmdSourceInput" Content="Input" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" Checked="rdbCmdSourceInput_Checked" IsChecked="True"/>
+                        </StackPanel>
+                        <TextBox Name="tbxCmdFileName" Text="D:\" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="200" Margin="0" ScrollViewer.CanContentScroll="True" MaxWidth="350" HorizontalScrollBarVisibility="Auto" IsEnabled="False" Width="250" UseLayoutRounding="True" IsUndoEnabled="False" TextWrapping="Wrap"/>
+                        <TextBox Name="tbxCmdIn" Text="" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="200" Margin="0,5,0,0" HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="True" MaxWidth="350" UseLayoutRounding="True" VerticalScrollBarVisibility="Auto" Width="250" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Bottom">
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,5">
+                            <RadioButton Name="rdbBigEndian" Content="Big-endian"/>
+                            <RadioButton Name="rdbLittleEndian" Content="Little-endian" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0" IsChecked="True"/>
+                        </StackPanel>
+                        <Button x:Name="btnSelectFile" Content="..." MaxWidth="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,55" Height="25" VerticalContentAlignment="Top" MinWidth="20" Click="btnSelectFile_Click" IsEnabled="False"/>
+                        <Button x:Name="btnCmdSend" Content="Command Send" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnCmdSend_Click" IsEnabled="False"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox x:Name="gbxGetData" Header="Receive Data" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="420" MinWidth="450">
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Label x:Name="lblReceiveDataPath" Content="Path:" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        <Label x:Name="lblFinename" Content="File Name:" Margin="0,5,0,0"/>
+                        <Label x:Name="lblDataPackageCount" Content="Package number:" Margin="0,5,0,0"/>
+                        <Label x:Name="lblFailurePkg" Content="Failure:" Margin="0,5,0,0"/>
+                        <Label x:Name="lblSpeed" Content="Speed(MB/s):" Margin="0,5,0,0"/>
+                        <Label x:Name="lblCheckPkgErr" Content="Pkg Error:" Margin="0,5,0,0"/>
+                        <Label x:Name="lblInternalWrErr" Content="Int wr Err" Margin="0,5,0,0"/>
+                        <Label x:Name="lblInternalRdErr" Content="Int rd Err" Margin="0,5,0,0"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <TextBox Name="tbxReceiveDataPath" Text="L:\ExperimentsData\test" MinWidth="280" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
+                        <TextBox Name="tbxFileName" Text=".dat" Height="25" MinWidth="200" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" Padding="0" Margin="0,5,0,0"/>
+                        <TextBox Name="tbxPackageCount" Text="0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" MinWidth="80" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,5,0,0"/>
+                        <TextBox Name="tbxFailurePkg" Text="0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" MinWidth="80" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,5,0,0"/>
+                        <TextBox Name="tbxSpeed" Text="0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" MinWidth="80" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,5,0,0"/>
+                        <TextBox Name="tbxCheckPkgErr" Text="0" Height="25" MinWidth="80" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,5,0,0"/>
+                        <TextBox Name="tbxInternalWrErr" Text="0" Height="25" MinWidth="80" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,5,0,0"/>
+                        <TextBox Name="tbxInternalRdErr" Text="0" Height="25" MinWidth="80" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,5,0,0"/>
+                        <Button x:Name="btnStartAcq" Content="Start" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="80" Background="#FF1B813E" Margin="0,5,0,0" Click="btnStartAcq_Click" BorderBrush="#FF0A0A0A" AutomationProperties.HelpText="Click to start acquisition" IsEnabled="False"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        <StackPanel>
+            <GroupBox x:Name="gbxInfo" Header="Info" HorizontalAlignment="Left"  VerticalAlignment="Top" MinHeight="450" MinWidth="250" MaxHeight="650">
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <TextBox x:Name="tbxInfo" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" ScrollViewer.CanContentScroll="True" UseLayoutRounding="True" VerticalScrollBarVisibility="Auto" MinHeight="400" MinWidth="230" MaxWidth="300" MaxHeight="600" IsReadOnly="True" IsUndoEnabled="False"/>
+                    <Button Name="btnClearInfo" Content="Clear" Height="25" Click="btnClearInfo_Click"/>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+
+    </StackPanel>
 </Window>
