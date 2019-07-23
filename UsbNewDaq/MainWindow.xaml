@@ -8,6 +8,14 @@
         Title="MainWindow" Closing="Window_Closing" HorizontalAlignment="Left" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Width="750" Height="700">
     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+            <StackPanel>
+                <Menu Height="22" Name="menuConfig" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <MenuItem Header="_Device" Foreground="#FF212121" BorderBrush="Transparent" Background="{x:Null}">
+                        <MenuItem Name="mitConfigDevice" Header="_Config" Click="mitConfigDevice_Click" Height="24" IsEnabled="False"/>
+                        <MenuItem Name="mitResetDevice" Header="_Reset Device" Click="mitResetDevice_Click"/>
+                    </MenuItem>
+                </Menu>
+            </StackPanel>
             <GroupBox x:Name="gbxUSBInstance" Header="USB Instance" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="470" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
                 <StackPanel>
                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
@@ -52,13 +60,16 @@
                                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0">
                                     <Button x:Name="btnSetUsb" Content="Set" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="25" Click="btnSetUsb_Click"/>
                                 </StackPanel>
+                                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <RadioButton Name="rdbFx2" Content="FX2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" VerticalContentAlignment="Center"/>
+                                    <RadioButton Name="rdbFx3" Content="FX3" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" VerticalContentAlignment="Center" Margin="0,5,0,0" IsChecked="True"/>
+                                </StackPanel>
                             </StackPanel>
-
                         </StackPanel>
-
                     </StackPanel>
 
                     <Label x:Name="lblUsbName" Content="C# USB - no device" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="25" Foreground="Red"/>
+                    
                 </StackPanel>
             </GroupBox>
             <GroupBox x:Name="gbxSendData" Header="Send Data" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="448">
@@ -69,17 +80,20 @@
                         <Label x:Name="lblCommadInput" Content="Commad"/>
                     </StackPanel>
                     <StackPanel>
+
                         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
                             <RadioButton Name="rdbCmdSourceFile" Content="File" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" Checked="rdbCmdSourceFile_Checked"/>
                             <RadioButton Name="rdbCmdSourceInput" Content="Input" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" Checked="rdbCmdSourceInput_Checked" IsChecked="True"/>
                         </StackPanel>
+
+
                         <TextBox Name="tbxCmdFileName" Text="D:\" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="200" Margin="0" ScrollViewer.CanContentScroll="True" MaxWidth="350" HorizontalScrollBarVisibility="Auto" IsEnabled="False" Width="250" UseLayoutRounding="True" IsUndoEnabled="False" TextWrapping="Wrap"/>
                         <TextBox Name="tbxCmdIn" Text="" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="200" Margin="0,5,0,0" HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="True" MaxWidth="350" UseLayoutRounding="True" VerticalScrollBarVisibility="Auto" Width="250" TextWrapping="Wrap"/>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Bottom">
                         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,5">
-                            <RadioButton Name="rdbBigEndian" Content="Big-endian"/>
-                            <RadioButton Name="rdbLittleEndian" Content="Little-endian" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0" IsChecked="True"/>
+                            <RadioButton Name="rdbBigEndian" Content="Big-endian" Checked="rdbBigEndian_Checked"/>
+                            <RadioButton Name="rdbLittleEndian" Content="Little-endian" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0" IsChecked="True" Checked="rdbLittleEndian_Checked"/>
                         </StackPanel>
                         <Button x:Name="btnSelectFile" Content="..." MaxWidth="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,55" Height="25" VerticalContentAlignment="Top" MinWidth="20" Click="btnSelectFile_Click" IsEnabled="False"/>
                         <Button x:Name="btnCmdSend" Content="Command Send" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnCmdSend_Click" IsEnabled="False"/>
@@ -95,27 +109,29 @@
                         <Label x:Name="lblFailurePkg" Content="Failure:" Margin="0,5,0,0"/>
                         <Label x:Name="lblSpeed" Content="Speed(MB/s):" Margin="0,5,0,0"/>
                         <Label x:Name="lblCheckPkgErr" Content="Pkg Error:" Margin="0,5,0,0"/>
-                        <Label x:Name="lblInternalWrErr" Content="Int wr Err" Margin="0,5,0,0"/>
-                        <Label x:Name="lblInternalRdErr" Content="Int rd Err" Margin="0,5,0,0"/>
+                        
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
                         <TextBox Name="tbxReceiveDataPath" Text="L:\ExperimentsData\test" MinWidth="280" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
-                        <TextBox Name="tbxFileName" Text=".dat" Height="25" MinWidth="200" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" Padding="0" Margin="0,5,0,0"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <TextBox Name="tbxFileName" Text=".dat" Height="25" MinWidth="200" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" Padding="0" Margin="0,0,0,0"/>
+                            <Button x:Name="btnSaveFile" Content="Save" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" VerticalContentAlignment="Center" Click="btnSaveFile_Click" HorizontalContentAlignment="Center"/>
+                        </StackPanel>
+                        
                         <TextBox Name="tbxPackageCount" Text="0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" MinWidth="80" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,5,0,0"/>
                         <TextBox Name="tbxFailurePkg" Text="0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" MinWidth="80" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,5,0,0"/>
                         <TextBox Name="tbxSpeed" Text="0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" MinWidth="80" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,5,0,0"/>
                         <TextBox Name="tbxCheckPkgErr" Text="0" Height="25" MinWidth="80" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,5,0,0"/>
-                        <TextBox Name="tbxInternalWrErr" Text="0" Height="25" MinWidth="80" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,5,0,0"/>
-                        <TextBox Name="tbxInternalRdErr" Text="0" Height="25" MinWidth="80" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,5,0,0"/>
                         <Button x:Name="btnStartAcq" Content="Start" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="80" Background="#FF1B813E" Margin="0,5,0,0" Click="btnStartAcq_Click" BorderBrush="#FF0A0A0A" AutomationProperties.HelpText="Click to start acquisition" IsEnabled="False"/>
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
         </StackPanel>
         <StackPanel>
-            <GroupBox x:Name="gbxInfo" Header="Info" HorizontalAlignment="Left"  VerticalAlignment="Top" MinHeight="450" MinWidth="250" MaxHeight="650">
+            <GroupBox x:Name="gbxInfo" Header="Info" HorizontalAlignment="Left"  VerticalAlignment="Top" MinHeight="450" MinWidth="250" MaxHeight="660">
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
-                    <TextBox x:Name="tbxInfo" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" ScrollViewer.CanContentScroll="True" UseLayoutRounding="True" VerticalScrollBarVisibility="Auto" MinHeight="400" MinWidth="230" MaxWidth="300" MaxHeight="600" IsReadOnly="True" IsUndoEnabled="False"/>
+                    <TextBox x:Name="tbxInfo" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" ScrollViewer.CanContentScroll="True" UseLayoutRounding="True" VerticalScrollBarVisibility="Auto" MinHeight="400" MinWidth="230" MaxWidth="300" MaxHeight="620
+                             " IsReadOnly="True" IsUndoEnabled="False" Height="606"/>
                     <Button Name="btnClearInfo" Content="Clear" Height="25" Click="btnClearInfo_Click"/>
                 </StackPanel>
             </GroupBox>

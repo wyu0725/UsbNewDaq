@@ -42,7 +42,6 @@ namespace UsbNewDaq
         private delegate void CheckPkgErrUpdate2(int errNum);
         int XferSize = 512;
         string AbsoluteFileName = null;
-        Thread tListen;
         long Successes;
         long Failures;
         DateTime t1, t2;
@@ -53,6 +52,7 @@ namespace UsbNewDaq
         int QueueSz = 1;
         int PPX;
         bool IsUsbFX3 = false;
+        bool IsLittleEndian = true;
         DataBuffer AcqDataBuffer = new DataBuffer();
         BlockingCollection<byte[]> ThreadData = new BlockingCollection<byte[]>();
 
@@ -94,6 +94,7 @@ namespace UsbNewDaq
             if (fileName.Trim() == null || fileName == ".dat")
             {
                 absoluteFileName = System.IO.Path.Combine(filePath, DefaultFileName);
+                tbxFileName.Text = DefaultFileName;
             }
             else
             {
@@ -103,9 +104,11 @@ namespace UsbNewDaq
             FileStream fileStream = null;
             if (File.Exists(absoluteFileName))
             {
-                if (MessageBox.Show("File Exist. Overwrite?", "File Error", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show("File Exist. Use default name?", "File Error", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
+                    absoluteFileName = System.IO.Path.Combine(filePath, DefaultFileName);
                     fileStream = File.Create(absoluteFileName);
+                    tbxFileName.Text = DefaultFileName;
                 }
                 else
                 {
@@ -148,13 +151,6 @@ namespace UsbNewDaq
             if (!ThreadData.IsAddingCompleted)
                 ThreadData.CompleteAdding();
 
-            if (tListen != null && tListen.IsAlive == true)
-            {
-                tListen.Abort();
-                tListen.Join();
-                tListen = null;
-            }
-
             MyDevice = null;
             BulkInEndPoint = null;
             BulkOutEndPoint = null;
@@ -164,24 +160,16 @@ namespace UsbNewDaq
             lblUsbName.Content = "C# USB - no device";
             lblUsbName.Foreground = Brushes.Red;
             btnStartAcq.IsEnabled = false;
+            btnCmdSend.IsEnabled = false;
             btnStartAcq.Content = "Start";
             btnSetUsb.Content = "Set";
             btnStartAcq.Background = new SolidColorBrush(Color.FromRgb(27, 129, 62));
+            cbxDeviceLists.IsEnabled = true;
             btnSetUsb.IsEnabled = true;
-
-            if (btnSetUsb.Content.Equals("Set") == false)
-            {
-                {
-                    cbxDeviceLists.IsEnabled = true;
-                    cbxInEndPoint.IsEnabled = true;
-                    cbxOutEndPoint.IsEnabled = true;
-                    cbxPpx.IsEnabled = true;
-                    cbxXferQueue.IsEnabled = true;
-                    btnSetUsb.Content = "Set";
-                    bRunning = false;
-                }
-
-            }
+            cbxInEndPoint.IsEnabled = true;
+            cbxOutEndPoint.IsEnabled = true;
+            cbxPpx.IsEnabled = true;
+            cbxXferQueue.IsEnabled = true;
         }
 
         /*Summary
@@ -192,6 +180,13 @@ namespace UsbNewDaq
         {
             RefreshDeviceLists(false);
             RefreshEndPoint();
+            cbxDeviceLists.IsEnabled = true;
+            cbxInEndPoint.IsEnabled = true;
+            cbxOutEndPoint.IsEnabled = true;
+            cbxPpx.IsEnabled = true;
+            cbxXferQueue.IsEnabled = true;
+            rdbFx2.IsEnabled = true;
+            rdbFx3.IsEnabled = true;
         }
 
         void RefreshUsb()
@@ -260,7 +255,7 @@ namespace UsbNewDaq
             }
         }
 
-        private void SetDevice()
+        private bool SetDevice()
         {
             MyDevice = usbDevices[cbxDeviceLists.SelectedIndex] as CyUSBDevice;
             if(MyDevice != null && MyDevice.BulkInEndPt != null && MyDevice.BulkOutEndPt != null)
@@ -269,8 +264,10 @@ namespace UsbNewDaq
                 BulkOutEndPoint = MyDevice.EndPointOf(UsbOutEndPointNum) as CyBulkEndPoint;
                 lblUsbName.Content = MyDevice.FriendlyName + " Connected";
                 lblUsbName.Foreground = Brushes.Green;
-                IsUsbFX3 =  MyDevice.bSuperSpeed;
-            }           
+                IsUsbFX3 = rdbFx3.IsChecked == true;
+                return true;
+            }
+            return false;
         }
 
         private void btnSetUsb_Click(object sender, RoutedEventArgs e)
@@ -282,16 +279,24 @@ namespace UsbNewDaq
                     MessageBox.Show("Please select the USB device", "USB ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                SetDevice();
-                cbxDeviceLists.IsEnabled = false;
-                cbxInEndPoint.IsEnabled = false;
-                cbxOutEndPoint.IsEnabled = false;
-                cbxPpx.IsEnabled = false;
-                cbxXferQueue.IsEnabled = false;
-                tbxInfo.AppendText("USB Connect\n");
-                btnSetUsb.Content = "Reset";
-                btnStartAcq.IsEnabled = true;
-                btnCmdSend.IsEnabled = true;
+                if (SetDevice())
+                {
+                    cbxDeviceLists.IsEnabled = false;
+                    cbxInEndPoint.IsEnabled = false;
+                    cbxOutEndPoint.IsEnabled = false;
+                    cbxPpx.IsEnabled = false;
+                    cbxXferQueue.IsEnabled = false;
+                    tbxInfo.AppendText("USB Connect\n");
+                    btnSetUsb.Content = "Reset";
+                    btnStartAcq.IsEnabled = true;
+                    btnCmdSend.IsEnabled = true;
+                    rdbFx2.IsEnabled = false;
+                    rdbFx3.IsEnabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("No Bulk EndPoint. Please program the Device","Device ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
@@ -309,6 +314,8 @@ namespace UsbNewDaq
                 btnStartAcq.IsEnabled = false;
                 btnCmdSend.IsEnabled = false;
                 btnSetUsb.Content = "Set";
+                rdbFx2.IsEnabled = true;
+                rdbFx3.IsEnabled = true;
             }
         }
 
@@ -382,6 +389,10 @@ namespace UsbNewDaq
         {
             if (btnStartAcq.Content.Equals("Start"))
             {
+                if (!SaveFile())
+                {
+                    return;
+                }
                 btnStartAcq.Content = "Stop";
                 btnStartAcq.Background = new SolidColorBrush(Color.FromRgb(181, 93, 76));
                 btnSetUsb.IsEnabled = false;
@@ -394,39 +405,17 @@ namespace UsbNewDaq
                 //QueueSz = 1;
                 PPX = int.Parse(cbxPpx.Text);
                 tbxCheckPkgErr.Text = string.Format("0");
-                if (!SaveFile())
-                {
-                    return;
-                }
+                
                 BinaryWriter bw = new BinaryWriter(File.Open(AbsoluteFileName, FileMode.Append));
                 bRunning = true;
-                //Task.Run(() => TestGetDataSync(bw));
-                /*var saveTask = Task.Run(() =>
-                {
-                    byte[] DataToFile;
-                    foreach(var item in ThreadData.GetConsumingEnumerable())
-                    {
-                        DataToFile = item;
-                        bw.Write(DataToFile);
-                    }
-                    bw.Flush();
-                    bw.Dispose();
-                    bw.Close();
-
-                });*/
                 var saveTask = Task.Factory.StartNew(() => 
                 {
                     byte[] DataToFile;
                     int LastPackage = 0;
                     int FirstPackage = 1;
                     int PackageErrCnt = -1;
-                    int PkgInternalErr = -1;
                     int PkgLength = 0;
                     CheckPkgErrUpdate dpCheckErr = new CheckPkgErrUpdate((x) => UpdateCheckPkgErr(x));
-                    CheckPkgErrUpdate dpIntRdErr = new CheckPkgErrUpdate(x =>
-                    {
-                        tbxInternalRdErr.Text = x.ToString();
-                    });
                     foreach (var item in ThreadData.GetConsumingEnumerable())
                     {
                         DataToFile = item;
@@ -439,11 +428,6 @@ namespace UsbNewDaq
                             Dispatcher.Invoke(dpCheckErr, PackageErrCnt);
                         }
                         LastPackage = DataToFile[PkgLength - 4] + (DataToFile[PkgLength - 3] << 8) + (DataToFile[PkgLength - 2] << 16) + (DataToFile[PkgLength - 1] << 24);
-                        if((FirstPackage + PkgLength / 4) != (LastPackage + 1))
-                        {
-                            PkgInternalErr += 1;
-                            Dispatcher.Invoke(dpIntRdErr, PkgInternalErr);
-                        }
                     }
                     bw.Flush();
                     bw.Dispose();
@@ -629,11 +613,6 @@ namespace UsbNewDaq
             long nIteration = 0;
             CyUSB.OVERLAPPED ovData = new CyUSB.OVERLAPPED();
             DisplayPacketInfo dp = new DisplayPacketInfo((int x, int y, double z) => UpdatePackageInfo(x, y, z));
-            CheckPkgErrUpdate dpWrDataErr = new CheckPkgErrUpdate(x =>
-            {
-                tbxInternalWrErr.Text = x.ToString();
-            });
-
             for (; bRunning;)
             {
                 nIteration++;
@@ -655,7 +634,6 @@ namespace UsbNewDaq
                 int FirstPackage;
                 int LastPackage = 0;
                 int PkgLength;
-                int PkgInternalErr = -1;
                 if (BulkInEndPoint.FinishDataXfer(ref cBufs[k], ref xBufs[k], ref len, ref oLaps[k]))
                 {
                     XferBytes += len;
@@ -669,11 +647,6 @@ namespace UsbNewDaq
                         FirstPackage = DataToFile[0] + (DataToFile[1] << 8) + (DataToFile[2] << 16) + (DataToFile[3] << 24);
                         PkgLength = DataToFile.Length;
                         LastPackage = DataToFile[PkgLength - 4] + (DataToFile[PkgLength - 3] << 8) + (DataToFile[PkgLength - 2] << 16) + (DataToFile[PkgLength - 1] << 24);
-                        if ((FirstPackage + PkgLength / 4) != (LastPackage + 1))
-                        {
-                            PkgInternalErr += 1;
-                            Dispatcher.Invoke(dpWrDataErr, PkgInternalErr);
-                        }
                     }
                     Successes++;
                 }
@@ -726,6 +699,7 @@ namespace UsbNewDaq
             tbxCmdFileName.IsEnabled = true;
             btnSelectFile.IsEnabled = true;
             tbxCmdIn.IsEnabled = false;
+            tbxCmdFileName.Text = Directory.GetCurrentDirectory();
         }
 
         private void rdbCmdSourceInput_Checked(object sender, RoutedEventArgs e)
@@ -750,7 +724,8 @@ namespace UsbNewDaq
 
         private void btnCmdSend_Click(object sender, RoutedEventArgs e)
         {
-            if(rdbCmdSourceFile.IsChecked == true)
+            byte[] RawCmdBytes;
+            if (rdbCmdSourceFile.IsChecked == true)
             {
                 string CmdFileName = tbxCmdFileName.Text;
                 if (CmdFileName == null || !File.Exists(CmdFileName))
@@ -758,8 +733,6 @@ namespace UsbNewDaq
                     MessageBox.Show("File not found", "File ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-
-                
                 StringBuilder TotalCmdStringBuilder = new StringBuilder();
                 using (StreamReader cmdFileStream = new StreamReader(CmdFileName))
                 {
@@ -785,10 +758,8 @@ namespace UsbNewDaq
                         CmdString = cmdFileStream.ReadLine();
                     }
                     string TotalCmdString = TotalCmdStringBuilder.ToString();
-                    byte[] RawCmdByte = HexStringToByteArray(TotalCmdStringBuilder.ToString());
+                    RawCmdBytes = HexStringToByteArray(TotalCmdStringBuilder.ToString());
                 }
-
-
             }
             else if(rdbCmdSourceInput.IsChecked == true)
             {
@@ -804,7 +775,13 @@ namespace UsbNewDaq
                     MessageBox.Show("Please input the cmd in HEX", "Command ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
+                RawCmdBytes = HexStringToByteArray(CmdIn);
             }
+            else
+            {
+                return;
+            }
+            CommandSend(RawCmdBytes, BulkOutEndPoint, IsUsbFX3, IsLittleEndian);
         }
 
         private void btnClearInfo_Click(object sender, RoutedEventArgs e)
@@ -835,8 +812,161 @@ namespace UsbNewDaq
                 return false;
             return usbBulkOutEndPoint.XferData(ref CmdBytes, ref CmdLength);
         }
+        private bool CommandSend(byte[] CmdBytes, CyBulkEndPoint usbBulkOutEndPoint, bool IsSuperSpeed, bool IsLittleEndian)
+        {
+            byte[] CmdBytesToUsb = CommandLengthCheck(CmdBytes, IsSuperSpeed);
+            if (IsLittleEndian)
+            {
+                CmdBytesToUsb = CommandEndianChange(CmdBytesToUsb, IsSuperSpeed);
+            }
+            return CommandSend(CmdBytesToUsb, usbBulkOutEndPoint);
+        }
 
-        private byte[] CommandSend(byte[] CmdBytes, bool IsSuperSpeed)
+        private byte[] CommandEndianChange(byte[] CmdBytes, bool IsSuperSpeed)
+        {
+            int CmdLength = CmdBytes.Length;
+            byte cmdTemp;
+            if (IsSuperSpeed)
+            {
+                for(int i = 0; i < CmdLength; i += 4)
+                {
+                    cmdTemp = CmdBytes[i];
+                    CmdBytes[i] = CmdBytes[i + 3];
+                    CmdBytes[i + 3] = cmdTemp;
+                    cmdTemp = CmdBytes[i + 1];
+                    CmdBytes[i + 1] = CmdBytes[i + 2];
+                    CmdBytes[i + 2] = cmdTemp;
+                }
+            }
+            else
+            {
+                for(int i = 0; i < CmdLength; i += 2)
+                {
+                    cmdTemp = CmdBytes[i];
+                    CmdBytes[i] = CmdBytes[i + 1];
+                    CmdBytes[i + 1] = cmdTemp;
+                }
+            }
+            return CmdBytes;
+        }
+
+        private void rdbLittleEndian_Checked(object sender, RoutedEventArgs e)
+        {
+            IsLittleEndian = true;
+        }
+
+        private void rdbBigEndian_Checked(object sender, RoutedEventArgs e)
+        {
+            IsLittleEndian = false;
+        }
+
+        private void ConfigFX3Device(string FileName, CyUSBDevice myDevice)
+        {
+            if (MyDevice != null)
+            {
+                FX3_FWDWNLOAD_ERROR_CODE enmResult = FX3_FWDWNLOAD_ERROR_CODE.SUCCESS;
+                CyFX3Device fx3 = myDevice as CyFX3Device;
+                enmResult = fx3.DownloadFw(FileName, FX3_FWDWNLOAD_MEDIA_TYPE.RAM);
+            }
+            else
+            {
+                MessageBox.Show("Please select the USB device", "Device ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ConfigFX2Device(string FileName, CyUSBDevice myDevice)
+        {
+            if (MyDevice != null)
+            {
+                CyFX2Device fx2 = myDevice as CyFX2Device;
+                bool bResult = fx2.LoadRAM(FileName);
+                if (bResult)
+                {
+                    tbxInfo.AppendText("Config FX2 Device successfully\n");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select the USB device", "Device ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
+        private void mitResetDevice_Click(object sender, RoutedEventArgs e)
+        {
+            if (MyDevice != null)
+            {
+                MyDevice.Reset();
+                mitResetDevice.IsEnabled = false;
+                mitConfigDevice.IsEnabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Please select the USB device", "Device ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void mitConfigDevice_Click(object sender, RoutedEventArgs e)
+        {
+            string ConfigFileName;
+            OpenFileDialog openCmdFile = new OpenFileDialog();
+            openCmdFile.Filter = "FX3 IMG (*.img)|*.img|FX2 iic (.iic)|*.iic|All files (*.*)|*.*";
+            openCmdFile.InitialDirectory = Directory.GetCurrentDirectory();
+
+            if (openCmdFile.ShowDialog() == true)
+                ConfigFileName = openCmdFile.FileName;
+            else
+            {
+                return;
+            }
+
+            if (ConfigFileName == null)
+            {
+                return;
+            }
+
+            if (rdbFx3.IsChecked == true)
+            {
+                ConfigFX3Device(ConfigFileName, MyDevice);
+            }
+            else if (rdbFx2.IsChecked == true)
+            {
+                ConfigFX2Device(ConfigFileName, MyDevice);
+            }
+            mitResetDevice.IsEnabled = true;
+            mitConfigDevice.IsEnabled = false;
+        }
+
+
+        private void btnSaveFile_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.DefaultExt = "dat";
+            saveDialog.AddExtension = true;
+            saveDialog.Filter = "data file (*.dat)|*.dat|text file (.txt)|*.txt|All files (*.*)|*.*";
+            saveDialog.FileName = tbxFileName.Text;
+            saveDialog.InitialDirectory = @tbxReceiveDataPath.Text;
+            saveDialog.OverwritePrompt = true;
+            saveDialog.Title = "Save Data files";
+            saveDialog.ValidateNames = true;
+            if (saveDialog.ShowDialog() == true)
+            {
+                tbxFileName.Text = saveDialog.SafeFileName;
+                string FileName = saveDialog.FileName;
+                string[] fileSplit = new string[1] { "\\" };
+                string[] FileNameArray = FileName.Split(fileSplit, StringSplitOptions.None);
+                FileName = null;
+                string[] FilePathArray = new string[FileNameArray.Length - 1];
+                for (int i = 0; i<FileNameArray.Length - 1; i++)
+                {
+                    FilePathArray[i] = FileNameArray[i];
+                }
+                tbxReceiveDataPath.Text = string.Join("\\", FilePathArray);
+            }
+
+        }
+
+        private byte[] CommandLengthCheck(byte[] CmdBytes, bool IsSuperSpeed)
         {
             int CmdLength = CmdBytes.Length;
             int CmdNum;
@@ -862,13 +992,18 @@ namespace UsbNewDaq
                 NewCmdLength = CmdNum * CmdLengthDivider;
             }
             byte[] NewCmdBytes = new byte[NewCmdLength];
-            NewCmdBytes = CmdBytes;
+            for (int i = 0; i < CmdNum*CmdLengthDivider; i++)
+            {
+                NewCmdBytes[i] = CmdBytes[i];
+            }
+            for (int i = 0; i < CmdNumRes; i++)
+            {
+                NewCmdBytes[NewCmdLength - i - 1] = CmdBytes[CmdLength - i - 1];
+            }
+            
             return NewCmdBytes;
         }
-        private bool CommandSed(byte[] CmdBytes, CyBulkEndPoint usbBulkOutEndPoint, bool IsSuperSpeed, bool IsLittleEndian)
-        {
-
-        }
+        
     }
 
 
