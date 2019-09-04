@@ -866,7 +866,21 @@ namespace UsbNewDaq
             {
                 FX3_FWDWNLOAD_ERROR_CODE enmResult = FX3_FWDWNLOAD_ERROR_CODE.SUCCESS;
                 CyFX3Device fx3 = myDevice as CyFX3Device;
-                enmResult = fx3.DownloadFw(FileName, FX3_FWDWNLOAD_MEDIA_TYPE.RAM);
+                if (fx3 != null)
+                {
+                    enmResult = fx3.DownloadFw(FileName, FX3_FWDWNLOAD_MEDIA_TYPE.RAM);
+                }
+                else
+                {
+                    MessageBox.Show("Please check whether the device is FX3 device", "Device ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                if(enmResult != FX3_FWDWNLOAD_ERROR_CODE.SUCCESS)
+                {
+                    MessageBox.Show("Config error", "Device ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                string report = string.Format("Program {0}\n", fx3.GetFwErrorString(enmResult));
+                tbxInfo.AppendText(report);
             }
             else
             {
@@ -879,10 +893,18 @@ namespace UsbNewDaq
             if (MyDevice != null)
             {
                 CyFX2Device fx2 = myDevice as CyFX2Device;
+                if(fx2 == null)
+                {
+                    MessageBox.Show("Please check whether the device is FX2 device", "Device ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
                 bool bResult = fx2.LoadRAM(FileName);
                 if (bResult)
                 {
                     tbxInfo.AppendText("Config FX2 Device successfully\n");
+                }
+                else
+                {
+                    MessageBox.Show("Please check the config files", "File ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
@@ -899,6 +921,7 @@ namespace UsbNewDaq
                 MyDevice.Reset();
                 mitResetDevice.IsEnabled = false;
                 mitConfigDevice.IsEnabled = true;
+                mitConfigDevice.Header = "_Config";
             }
             else
             {
@@ -910,7 +933,20 @@ namespace UsbNewDaq
         {
             string ConfigFileName;
             OpenFileDialog openCmdFile = new OpenFileDialog();
-            openCmdFile.Filter = "FX3 IMG (*.img)|*.img|FX2 iic (.iic)|*.iic|All files (*.*)|*.*";
+            if(rdbFx2.IsChecked == true)
+            {
+                
+                openCmdFile.Filter = "FX2 iic (.iic)|*.iic|All files (*.*)|*.*";
+            }
+            else if(rdbFx3.IsChecked == true)
+            {
+                openCmdFile.Filter = "FX3 IMG (*.img)|*.img|All files (*.*)|*.*";
+            }
+            else
+            {
+                openCmdFile.Filter = "FX3 IMG (*.img)|*.img|FX2 iic (.iic)|*.iic|All files (*.*)|*.*";
+            }
+            
             openCmdFile.InitialDirectory = Directory.GetCurrentDirectory();
 
             if (openCmdFile.ShowDialog() == true)
@@ -935,6 +971,7 @@ namespace UsbNewDaq
             }
             mitResetDevice.IsEnabled = true;
             mitConfigDevice.IsEnabled = false;
+            mitConfigDevice.Header = "_Config (Reset first)";
         }
 
 

@@ -15,7 +15,20 @@ BufSz	UsbNewDaq\\MainWindow.xaml.cs	/^        int BufSz;$/;"	f	language:C#	class
 BulkInEndPoint	UsbNewDaq\\MainWindow.xaml.cs	/^        CyBulkEndPoint BulkInEndPoint;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 BulkInEndPoint	UsbNewDaq\\UsbDataProducer.cs	/^        public CyBulkEndPoint BulkInEndPoint$/;"	p	language:C#	class:UsbNewDaq.UsbDataProducer
 BulkOutEndPoint	UsbNewDaq\\MainWindow.xaml.cs	/^        CyBulkEndPoint BulkOutEndPoint;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
-CommandSend	UsbNewDaq\\MainWindow.xaml.cs	/^        private void CommandSend(byte[] cmd)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+CheckDouble	UsbNewDaq\\CheckStringFormat.cs	/^        public static bool CheckDouble(string DoubleInString)$/;"	m	language:C#	class:UsbNewDaq.CheckStringFormat
+CheckHex	UsbNewDaq\\CheckStringFormat.cs	/^        public static bool CheckHex(string HexInString)$/;"	m	language:C#	class:UsbNewDaq.CheckStringFormat
+CheckHexByte	UsbNewDaq\\CheckStringFormat.cs	/^        public static bool CheckHexByte(string Hex8Bits)$/;"	m	language:C#	class:UsbNewDaq.CheckStringFormat
+CheckInteger	UsbNewDaq\\CheckStringFormat.cs	/^        public static bool CheckInteger(string IntegerInString)$/;"	m	language:C#	class:UsbNewDaq.CheckStringFormat
+CheckPkgErrUpdate	UsbNewDaq\\MainWindow.xaml.cs	/^        private delegate void CheckPkgErrUpdate(int errNum);$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+CheckPkgErrUpdate1	UsbNewDaq\\MainWindow.xaml.cs	/^        private delegate void CheckPkgErrUpdate1(int errNum);$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+CheckPkgErrUpdate2	UsbNewDaq\\MainWindow.xaml.cs	/^        private delegate void CheckPkgErrUpdate2(int errNum);$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+CheckStringFormat	UsbNewDaq\\CheckStringFormat.cs	/^    class CheckStringFormat$/;"	c	language:C#	namespace:UsbNewDaq
+CommandEndianChange	UsbNewDaq\\MainWindow.xaml.cs	/^        private byte[] CommandEndianChange(byte[] CmdBytes, bool IsSuperSpeed)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+CommandLengthCheck	UsbNewDaq\\MainWindow.xaml.cs	/^        private byte[] CommandLengthCheck(byte[] CmdBytes, bool IsSuperSpeed)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+CommandSend	UsbNewDaq\\MainWindow.xaml.cs	/^        private bool CommandSend(byte[] CmdBytes, CyBulkEndPoint usbBulkOutEndPoint)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+CommandSend	UsbNewDaq\\MainWindow.xaml.cs	/^        private bool CommandSend(byte[] CmdBytes, CyBulkEndPoint usbBulkOutEndPoint, bool IsSupe/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+ConfigFX2Device	UsbNewDaq\\MainWindow.xaml.cs	/^        private void ConfigFX2Device(string FileName, CyUSBDevice myDevice)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+ConfigFX3Device	UsbNewDaq\\MainWindow.xaml.cs	/^        private void ConfigFX3Device(string FileName, CyUSBDevice myDevice)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
 CreateDelegate	UsbNewDaq\\obj\\Debug\\GeneratedInternalTypeHelper.g.i.cs	/^        protected override System.Delegate CreateDelegate(System.Type delegateType, object targe/;"	m	language:C#	class:XamlGeneratedNamespace.GeneratedInternalTypeHelper
 CreateInstance	UsbNewDaq\\obj\\Debug\\GeneratedInternalTypeHelper.g.i.cs	/^        protected override object CreateInstance(System.Type type, System.Globalization.CultureI/;"	m	language:C#	class:XamlGeneratedNamespace.GeneratedInternalTypeHelper
 Culture	UsbNewDaq\\Properties\\Resources.Designer.cs	/^        internal static global::System.Globalization.CultureInfo Culture$/;"	p	language:C#	class:UsbNewDaq.Properties.Resources
@@ -31,12 +44,15 @@ Failures	UsbNewDaq\\MainWindow.xaml.cs	/^        long Failures;$/;"	f	language:C
 GeneratedInternalTypeHelper	UsbNewDaq\\obj\\Debug\\GeneratedInternalTypeHelper.g.i.cs	/^    public sealed class GeneratedInternalTypeHelper : System.Windows.Markup.InternalTypeHelper {$/;"	c	language:C#	namespace:XamlGeneratedNamespace
 GetData	UsbNewDaq\\DataBuffer.cs	/^        public void GetData(out byte[] receiveData)$/;"	m	language:C#	class:UsbNewDaq.DataBuffer
 GetPropertyValue	UsbNewDaq\\obj\\Debug\\GeneratedInternalTypeHelper.g.i.cs	/^        protected override object GetPropertyValue(System.Reflection.PropertyInfo propertyInfo, /;"	m	language:C#	class:XamlGeneratedNamespace.GeneratedInternalTypeHelper
+HexStringToByteArray	UsbNewDaq\\MainWindow.xaml.cs	/^        private byte[] HexStringToByteArray(string HexString)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
 IDataProducer	UsbNewDaq\\IDataProducer.cs	/^    interface IDataProducer$/;"	i	language:C#	namespace:UsbNewDaq
 InitializeComponent	UsbNewDaq\\obj\\Debug\\App.g.cs	/^        public void InitializeComponent() {$/;"	m	language:C#	class:UsbNewDaq.App
 InitializeComponent	UsbNewDaq\\obj\\Debug\\App.g.i.cs	/^        public void InitializeComponent() {$/;"	m	language:C#	class:UsbNewDaq.App
 InitializeComponent	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        public void InitializeComponent() {$/;"	m	language:C#	class:UsbNewDaq.MainWindow
 InitializeComponent	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        public void InitializeComponent() {$/;"	m	language:C#	class:UsbNewDaq.MainWindow
 IsCompleted	UsbNewDaq\\DataBuffer.cs	/^        public bool IsCompleted$/;"	p	language:C#	class:UsbNewDaq.DataBuffer
+IsLittleEndian	UsbNewDaq\\MainWindow.xaml.cs	/^        bool IsLittleEndian = true;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+IsUsbFX3	UsbNewDaq\\MainWindow.xaml.cs	/^        bool IsUsbFX3 = false;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 LockNLoad	UsbNewDaq\\MainWindow.xaml.cs	/^        public unsafe void LockNLoad(byte[][] cBufs, byte[][] xBufs, byte[][] oLaps, ISO_PKT_INF/;"	m	language:C#	class:UsbNewDaq.MainWindow
 Main	UsbNewDaq\\obj\\Debug\\App.g.cs	/^        public static void Main() {$/;"	m	language:C#	class:UsbNewDaq.App
 Main	UsbNewDaq\\obj\\Debug\\App.g.i.cs	/^        public static void Main() {$/;"	m	language:C#	class:UsbNewDaq.App
@@ -58,7 +74,7 @@ SaveFile	UsbNewDaq\\MainWindow.xaml.cs	/^        private bool SaveFile(string fi
 SaveFile	UsbNewDaq\\MainWindow.xaml.cs	/^        private bool SaveFile(string filePath, string fileName)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
 SetData	UsbNewDaq\\DataBuffer.cs	/^        public void SetData(byte[] receiveData)$/;"	m	language:C#	class:UsbNewDaq.DataBuffer
 SetDataDone	UsbNewDaq\\DataBuffer.cs	/^        public void SetDataDone()$/;"	m	language:C#	class:UsbNewDaq.DataBuffer
-SetDevice	UsbNewDaq\\MainWindow.xaml.cs	/^        private void SetDevice()$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+SetDevice	UsbNewDaq\\MainWindow.xaml.cs	/^        private bool SetDevice()$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
 SetPropertyValue	UsbNewDaq\\obj\\Debug\\GeneratedInternalTypeHelper.g.i.cs	/^        protected override void SetPropertyValue(System.Reflection.PropertyInfo propertyInfo, ob/;"	m	language:C#	class:XamlGeneratedNamespace.GeneratedInternalTypeHelper
 Settings	UsbNewDaq\\Properties\\Settings.Designer.cs	/^    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBas/;"	c	language:C#	namespace:UsbNewDaq.Properties
 Successes	UsbNewDaq\\MainWindow.xaml.cs	/^        long Successes;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
@@ -68,11 +84,13 @@ TestDataProducer	UsbNewDaq\\MainWindow.xaml.cs	/^        private void TestDataPr
 TestGetDataSync	UsbNewDaq\\MainWindow.xaml.cs	/^        private void TestGetDataSync()$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
 ThreadData	UsbNewDaq\\DataBuffer.cs	/^        private BlockingCollection<byte[]> ThreadData = new BlockingCollection<byte[]>(500);$/;"	f	language:C#	class:UsbNewDaq.DataBuffer	file:
 ThreadData	UsbNewDaq\\MainWindow.xaml.cs	/^        BlockingCollection<byte[]> ThreadData = new BlockingCollection<byte[]>();$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
-UpdataPackageInfo	UsbNewDaq\\MainWindow.xaml.cs	/^        private void UpdataPackageInfo(int packageNum, int packageFailure, double Speed)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+UpdateCheckPkgErr	UsbNewDaq\\MainWindow.xaml.cs	/^        private void UpdateCheckPkgErr(int errNum)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+UpdatePackageInfo	UsbNewDaq\\MainWindow.xaml.cs	/^        private void UpdatePackageInfo(int packageNum, int packageFailure, double Speed)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
 UsbDataProducer	UsbNewDaq\\UsbDataProducer.cs	/^        public UsbDataProducer(CyBulkEndPoint usbEndPoint)$/;"	m	language:C#	class:UsbNewDaq.UsbDataProducer
 UsbDataProducer	UsbNewDaq\\UsbDataProducer.cs	/^    class UsbDataProducer: IDataProducer$/;"	c	language:C#	namespace:UsbNewDaq
 UsbInEndPointNum	UsbNewDaq\\MainWindow.xaml.cs	/^        byte UsbInEndPointNum;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 UsbNewDaq	UsbNewDaq\\App.xaml.cs	/^namespace UsbNewDaq$/;"	n	language:C#
+UsbNewDaq	UsbNewDaq\\CheckStringFormat.cs	/^namespace UsbNewDaq$/;"	n	language:C#
 UsbNewDaq	UsbNewDaq\\DataBuffer.cs	/^namespace UsbNewDaq$/;"	n	language:C#
 UsbNewDaq	UsbNewDaq\\IDataProducer.cs	/^namespace UsbNewDaq$/;"	n	language:C#
 UsbNewDaq	UsbNewDaq\\MainWindow.xaml.cs	/^namespace UsbNewDaq$/;"	n	language:C#
@@ -96,9 +114,16 @@ _contentLoaded	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        private bool _
 bRunning	UsbNewDaq\\MainWindow.xaml.cs	/^        bool bRunning = false;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 btnClearInfo	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.Button btnClearInfo;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 btnClearInfo	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.Button btnClearInfo;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
-btnResetUsb	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.Button btnResetUsb;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
-btnResetUsb	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.Button btnResetUsb;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
-btnResetUsb_Click	UsbNewDaq\\MainWindow.xaml.cs	/^        private void btnResetUsb_Click(object sender, RoutedEventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+btnClearInfo_Click	UsbNewDaq\\MainWindow.xaml.cs	/^        private void btnClearInfo_Click(object sender, RoutedEventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+btnCmdSend	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.Button btnCmdSend;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+btnCmdSend	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.Button btnCmdSend;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+btnCmdSend_Click	UsbNewDaq\\MainWindow.xaml.cs	/^        private void btnCmdSend_Click(object sender, RoutedEventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+btnSaveFile	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.Button btnSaveFile;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+btnSaveFile	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.Button btnSaveFile;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+btnSaveFile_Click	UsbNewDaq\\MainWindow.xaml.cs	/^        private void btnSaveFile_Click(object sender, RoutedEventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+btnSelectFile	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.Button btnSelectFile;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+btnSelectFile	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.Button btnSelectFile;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+btnSelectFile_Click	UsbNewDaq\\MainWindow.xaml.cs	/^        private void btnSelectFile_Click(object sender, RoutedEventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
 btnSetUsb	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.Button btnSetUsb;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 btnSetUsb	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.Button btnSetUsb;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 btnSetUsb_Click	UsbNewDaq\\MainWindow.xaml.cs	/^        private void btnSetUsb_Click(object sender, RoutedEventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
@@ -127,6 +152,8 @@ gbxSendData	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Win
 gbxSendData	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.GroupBox gbxSendData;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 gbxUSBInstance	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.GroupBox gbxUSBInstance;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 gbxUSBInstance	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.GroupBox gbxUSBInstance;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+lblCheckPkgErr	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.Label lblCheckPkgErr;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+lblCheckPkgErr	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.Label lblCheckPkgErr;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 lblCmdFileName	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.Label lblCmdFileName;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 lblCmdFileName	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.Label lblCmdFileName;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 lblCommadInput	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.Label lblCommadInput;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
@@ -155,11 +182,44 @@ lblUsbName	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Wind
 lblUsbName	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.Label lblUsbName;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 lblXferQueue	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.Label lblXferQueue;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 lblXferQueue	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.Label lblXferQueue;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+menuConfig	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.Menu menuConfig;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+menuConfig	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.Menu menuConfig;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+mitConfigDevice	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.MenuItem mitConfigDevice;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+mitConfigDevice	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.MenuItem mitConfigDevice;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+mitConfigDevice_Click	UsbNewDaq\\MainWindow.xaml.cs	/^        private void mitConfigDevice_Click(object sender, RoutedEventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+mitResetDevice	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.MenuItem mitResetDevice;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+mitResetDevice	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.MenuItem mitResetDevice;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+mitResetDevice_Click	UsbNewDaq\\MainWindow.xaml.cs	/^        private void mitResetDevice_Click(object sender, RoutedEventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+rdbBigEndian	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.RadioButton rdbBigEndian;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+rdbBigEndian	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.RadioButton rdbBigEndian;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+rdbBigEndian_Checked	UsbNewDaq\\MainWindow.xaml.cs	/^        private void rdbBigEndian_Checked(object sender, RoutedEventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+rdbCmdSourceFile	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.RadioButton rdbCmdSourceFile;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+rdbCmdSourceFile	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.RadioButton rdbCmdSourceFile;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+rdbCmdSourceFile_Checked	UsbNewDaq\\MainWindow.xaml.cs	/^        private void rdbCmdSourceFile_Checked(object sender, RoutedEventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+rdbCmdSourceInput	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.RadioButton rdbCmdSourceInput;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+rdbCmdSourceInput	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.RadioButton rdbCmdSourceInput;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+rdbCmdSourceInput_Checked	UsbNewDaq\\MainWindow.xaml.cs	/^        private void rdbCmdSourceInput_Checked(object sender, RoutedEventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+rdbFx2	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.RadioButton rdbFx2;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+rdbFx2	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.RadioButton rdbFx2;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+rdbFx3	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.RadioButton rdbFx3;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+rdbFx3	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.RadioButton rdbFx3;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+rdbLittleEndian	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.RadioButton rdbLittleEndian;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+rdbLittleEndian	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.RadioButton rdbLittleEndian;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+rdbLittleEndian_Checked	UsbNewDaq\\MainWindow.xaml.cs	/^        private void rdbLittleEndian_Checked(object sender, RoutedEventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
 resourceCulture	UsbNewDaq\\Properties\\Resources.Designer.cs	/^        private static global::System.Globalization.CultureInfo resourceCulture;$/;"	f	language:C#	class:UsbNewDaq.Properties.Resources	file:
 resourceMan	UsbNewDaq\\Properties\\Resources.Designer.cs	/^        private static global::System.Resources.ResourceManager resourceMan;$/;"	f	language:C#	class:UsbNewDaq.Properties.Resources	file:
+rxByte	UsbNewDaq\\CheckStringFormat.cs	/^        private const string rxByte = @"\\b[0-9a-fA-F]{2}\\b";\/\/ Match 8 bit Hex$/;"	f	language:C#	class:UsbNewDaq.CheckStringFormat	file:
+rxDouble	UsbNewDaq\\CheckStringFormat.cs	/^        private const string rxDouble = @"^-?\\d+(\\.\\d+)?$";\/\/ Match double$/;"	f	language:C#	class:UsbNewDaq.CheckStringFormat	file:
+rxHex	UsbNewDaq\\CheckStringFormat.cs	/^        private const string rxHex = @"\\b[0-9a-fA-F]{1,}\\b";\/\/ Match 8 bytes Hex$/;"	f	language:C#	class:UsbNewDaq.CheckStringFormat	file:
+rxInteger	UsbNewDaq\\CheckStringFormat.cs	/^        private const string rxInteger = @"^\\d+$";   \/\/ Match positive integer$/;"	f	language:C#	class:UsbNewDaq.CheckStringFormat	file:
 t1	UsbNewDaq\\MainWindow.xaml.cs	/^        DateTime t1, t2;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 t2	UsbNewDaq\\MainWindow.xaml.cs	/^        DateTime t1, t2;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
-tListen	UsbNewDaq\\MainWindow.xaml.cs	/^        Thread tListen;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+tbxCheckPkgErr	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.TextBox tbxCheckPkgErr;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+tbxCheckPkgErr	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.TextBox tbxCheckPkgErr;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+tbxCmdFileName	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.TextBox tbxCmdFileName;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+tbxCmdFileName	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.TextBox tbxCmdFileName;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+tbxCmdIn	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.TextBox tbxCmdIn;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+tbxCmdIn	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.TextBox tbxCmdIn;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 tbxFailurePkg	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.TextBox tbxFailurePkg;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 tbxFailurePkg	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.TextBox tbxFailurePkg;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 tbxFileName	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.TextBox tbxFileName;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:

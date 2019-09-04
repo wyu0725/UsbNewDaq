@@ -11,7 +11,13 @@
             <StackPanel>
                 <Menu Height="22" Name="menuConfig" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <MenuItem Header="_Device" Foreground="#FF212121" BorderBrush="Transparent" Background="{x:Null}">
-                        <MenuItem Name="mitConfigDevice" Header="_Config" Click="mitConfigDevice_Click" Height="24" IsEnabled="False"/>
+                        <MenuItem Name="mitConfigDevice" Header="_Config (Reset first)" Click="mitConfigDevice_Click" Height="24" IsEnabled="False">
+                            <MenuItem.ToolTip>
+                                <ToolTip>
+                                    Reset the device before config.
+                                </ToolTip>
+                            </MenuItem.ToolTip>
+                        </MenuItem>
                         <MenuItem Name="mitResetDevice" Header="_Reset Device" Click="mitResetDevice_Click"/>
                     </MenuItem>
                 </Menu>
