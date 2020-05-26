@@ -1,0 +1,14 @@
+===================================
+Configuration Memory information
+===================================
+File Format        MCS
+Interface          SPIX4
+Size               32M
+Start Address      0x00000000
+End Address        0x01FFFFFF
+Checksum           0x0CAFADF4
+Fill Value         0xFF
+
+Addr1         Addr2         Date                    File(s)                                                                                                              Checksum
+0x00000000    0x00F2471B    May 26 09:51:48 2020    D:/OneDrive - mail.ustc.edu.cn/Lab/Design reference/HDL/usb3/EZ-USB-FX3/EZ-USB-FX3.runs/impl_1/ez_usb_fx3_top.bit    0x000482D8
+File Checksum Total                                                                                                                                                      0x000482D8
