@@ -45,6 +45,8 @@ GeneratedInternalTypeHelper	UsbNewDaq\\obj\\Debug\\GeneratedInternalTypeHelper.g
 GetData	UsbNewDaq\\DataBuffer.cs	/^        public void GetData(out byte[] receiveData)$/;"	m	language:C#	class:UsbNewDaq.DataBuffer
 GetPropertyValue	UsbNewDaq\\obj\\Debug\\GeneratedInternalTypeHelper.g.i.cs	/^        protected override object GetPropertyValue(System.Reflection.PropertyInfo propertyInfo, /;"	m	language:C#	class:XamlGeneratedNamespace.GeneratedInternalTypeHelper
 HexStringToByteArray	UsbNewDaq\\MainWindow.xaml.cs	/^        private byte[] HexStringToByteArray(string HexString)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+IDLE	src\\ez_usb_fx2lp_if.v	/^  localparam IDLE          = 6'b000001;$/;"	c	language:Verilog	module:ez_usb_fx2lp_if
+IDLE	src\\ez_usb_fx3_if.v	/^  localparam IDLE          = 9'b000000001;$/;"	c	language:Verilog	module:ez_usb_fx3_if
 IDataProducer	UsbNewDaq\\IDataProducer.cs	/^    interface IDataProducer$/;"	i	language:C#	namespace:UsbNewDaq
 InitializeComponent	UsbNewDaq\\obj\\Debug\\App.g.cs	/^        public void InitializeComponent() {$/;"	m	language:C#	class:UsbNewDaq.App
 InitializeComponent	UsbNewDaq\\obj\\Debug\\App.g.i.cs	/^        public void InitializeComponent() {$/;"	m	language:C#	class:UsbNewDaq.App
@@ -63,6 +65,13 @@ MainWindow	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^    public partial class M
 MyDevice	UsbNewDaq\\MainWindow.xaml.cs	/^        CyUSBDevice MyDevice;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 PPX	UsbNewDaq\\MainWindow.xaml.cs	/^        int PPX;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 QueueSz	UsbNewDaq\\MainWindow.xaml.cs	/^        int QueueSz = 1;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+READ_DATA	src\\ez_usb_fx2lp_if.v	/^  localparam READ_DATA     = 6'b001000;\/\/ wait user to fetch data$/;"	c	language:Verilog	module:ez_usb_fx2lp_if
+READ_DATA	src\\ez_usb_fx3_if.v	/^  localparam READ_DATA     = 9'b000010000;$/;"	c	language:Verilog	module:ez_usb_fx3_if
+READ_DELAY	src\\ez_usb_fx2lp_if.v	/^  localparam READ_DELAY    = 6'b000010;\/\/ fx2lp fifo addr setup time > one ifclk when ifclk = /;"	c	language:Verilog	module:ez_usb_fx2lp_if
+READ_DELAY	src\\ez_usb_fx3_if.v	/^  localparam READ_DELAY    = 9'b000000100;$/;"	c	language:Verilog	module:ez_usb_fx3_if
+READ_RD	src\\ez_usb_fx3_if.v	/^  localparam READ_RD       = 9'b000000010;$/;"	c	language:Verilog	module:ez_usb_fx3_if
+READ_START	src\\ez_usb_fx2lp_if.v	/^  localparam READ_START    = 6'b000100;\/\/ fetch data from usb bus$/;"	c	language:Verilog	module:ez_usb_fx2lp_if
+READ_START	src\\ez_usb_fx3_if.v	/^  localparam READ_START    = 9'b000001000;$/;"	c	language:Verilog	module:ez_usb_fx3_if
 RefreshDeviceLists	UsbNewDaq\\MainWindow.xaml.cs	/^        private void RefreshDeviceLists(bool bPreserveSelectDevice)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
 RefreshEndPoint	UsbNewDaq\\MainWindow.xaml.cs	/^        private void RefreshEndPoint()$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
 RefreshUsb	UsbNewDaq\\MainWindow.xaml.cs	/^        void RefreshUsb()$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
@@ -102,6 +111,12 @@ UsbNewDaq	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^namespace UsbNewDaq {$/;"	n
 UsbNewDaq.Properties	UsbNewDaq\\Properties\\Resources.Designer.cs	/^namespace UsbNewDaq.Properties$/;"	n	language:C#
 UsbNewDaq.Properties	UsbNewDaq\\Properties\\Settings.Designer.cs	/^namespace UsbNewDaq.Properties$/;"	n	language:C#
 UsbOutEndPointNum	UsbNewDaq\\MainWindow.xaml.cs	/^        byte UsbOutEndPointNum;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+WRITE_DATA	src\\ez_usb_fx2lp_if.v	/^  localparam WRITE_DATA    = 6'b100000;\/\/ send data to usb bus$/;"	c	language:Verilog	module:ez_usb_fx2lp_if
+WRITE_DATA	src\\ez_usb_fx3_if.v	/^  localparam WRITE_DATA    = 9'b000100000;$/;"	c	language:Verilog	module:ez_usb_fx3_if
+WRITE_DELAY	src\\ez_usb_fx2lp_if.v	/^  localparam WRITE_DELAY   = 6'b010000;\/\/ fx2lp fifo addr setup time > one ifclk when ifclk = /;"	c	language:Verilog	module:ez_usb_fx2lp_if
+WRITE_DELAY1	src\\ez_usb_fx3_if.v	/^  localparam WRITE_DELAY1  = 9'b001000000;$/;"	c	language:Verilog	module:ez_usb_fx3_if
+WRITE_DELAY2	src\\ez_usb_fx3_if.v	/^  localparam WRITE_DELAY2  = 9'b010000000;$/;"	c	language:Verilog	module:ez_usb_fx3_if
+WRITE_DELAY3	src\\ez_usb_fx3_if.v	/^  localparam WRITE_DELAY3  = 9'b100000000;$/;"	c	language:Verilog	module:ez_usb_fx3_if
 Window_Closing	UsbNewDaq\\MainWindow.xaml.cs	/^        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
 WriteFileCancelToken	UsbNewDaq\\MainWindow.xaml.cs	/^        private CancellationTokenSource WriteFileCancelToken;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 XamlGeneratedNamespace	UsbNewDaq\\obj\\Debug\\GeneratedInternalTypeHelper.g.i.cs	/^namespace XamlGeneratedNamespace {$/;"	n	language:C#
@@ -111,6 +126,9 @@ XferSize	UsbNewDaq\\MainWindow.xaml.cs	/^        int XferSize = 512;$/;"	f	langu
 _bulkInEndPoint	UsbNewDaq\\UsbDataProducer.cs	/^        private CyBulkEndPoint _bulkInEndPoint;$/;"	f	language:C#	class:UsbNewDaq.UsbDataProducer	file:
 _contentLoaded	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        private bool _contentLoaded;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 _contentLoaded	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        private bool _contentLoaded;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+addr	src\\ez_usb_fx2lp_if.v	/^  reg [1:0] addr;$/;"	r	language:Verilog	module:ez_usb_fx2lp_if
+addr	src\\ez_usb_fx3_if.v	/^  reg [1:0] addr;$/;"	r	language:Verilog	module:ez_usb_fx3_if
+addr	src\\ez_usb_fx3_top.v	/^    output [1:0] addr,$/;"	p	language:Verilog	module:ez_usb_fx3_top
 bRunning	UsbNewDaq\\MainWindow.xaml.cs	/^        bool bRunning = false;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 btnClearInfo	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.Button btnClearInfo;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 btnClearInfo	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.Button btnClearInfo;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
@@ -142,8 +160,57 @@ cbxPpx	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Window
 cbxPpx_SelectionChanged	UsbNewDaq\\MainWindow.xaml.cs	/^        private void cbxPpx_SelectionChanged(object sender, SelectionChangedEventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
 cbxXferQueue	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.ComboBox cbxXferQueue;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 cbxXferQueue	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.ComboBox cbxXferQueue;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+clk	src\\ez_usb_fx2lp_if.v	/^  input             clk,$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+clk	src\\ez_usb_fx3_if.v	/^  input                            clk,$/;"	p	language:Verilog	module:ez_usb_fx3_if
+clk	src\\ez_usb_fx3_top.v	/^    input clk,$/;"	p	language:Verilog	module:ez_usb_fx3_top
+clk100m_o	src\\clk_gen.v	/^    output clk100m_o$/;"	p	language:Verilog	module:clk_gen
+clk100m_w	src\\clk_gen.v	/^    wire clk100m_w;$/;"	n	language:Verilog	module:clk_gen
+clk40m_i	src\\clk_gen.v	/^    input clk40m_i,$/;"	p	language:Verilog	module:clk_gen
+clk_fb_w	src\\clk_gen.v	/^    wire clk_fb_w;$/;"	n	language:Verilog	module:clk_gen
+clk_gen	src\\clk_gen.v	/^module clk_gen($/;"	m	language:Verilog
+clk_usb	src\\ez_usb_fx3_top.v	/^    wire clk_usb;$/;"	n	language:Verilog	module:ez_usb_fx3_top
 defaultInstance	UsbNewDaq\\Properties\\Settings.Designer.cs	/^        private static Settings defaultInstance = ((Settings)(global::System.Configuration.Appli/;"	f	language:C#	class:UsbNewDaq.Properties.Settings	file:
+din	src\\ez_usb_fx3_top.v	/^    wire [31:0] din;$/;"	n	language:Verilog	module:ez_usb_fx3_top
+dio	src\\ez_usb_fx3_top.v	/^    inout [31:0] dio,$/;"	p	language:Verilog	module:ez_usb_fx3_top
+dout	src\\ez_usb_fx3_top.v	/^    wire [31:0] dout;$/;"	n	language:Verilog	module:ez_usb_fx3_top
+dout_t	src\\ez_usb_fx3_top.v	/^    wire dout_t;$/;"	n	language:Verilog	module:ez_usb_fx3_top
 elapsed	UsbNewDaq\\MainWindow.xaml.cs	/^        TimeSpan elapsed;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+ez_usb_addr	src\\ez_usb_fx2lp_if.v	/^  output [1:0]      ez_usb_addr,          \/\/ usb fifo addr$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+ez_usb_addr	src\\ez_usb_fx3_if.v	/^  output [1:0]                      ez_usb_addr, \/\/ usb fifo addr$/;"	p	language:Verilog	module:ez_usb_fx3_if
+ez_usb_din	src\\ez_usb_fx2lp_if.v	/^  input [15:0]      ez_usb_din,$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+ez_usb_din	src\\ez_usb_fx3_if.v	/^  input [31:0]                     ez_usb_din,$/;"	p	language:Verilog	module:ez_usb_fx3_if
+ez_usb_dout	src\\ez_usb_fx2lp_if.v	/^  output reg [15:0] ez_usb_dout = 16'b0,$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+ez_usb_dout	src\\ez_usb_fx3_if.v	/^  output reg [31:0]                ez_usb_dout = 32'b0,$/;"	p	language:Verilog	module:ez_usb_fx3_if
+ez_usb_dout_t	src\\ez_usb_fx2lp_if.v	/^  output reg        ez_usb_dout_t = 1'b1, \/\/ A logic High on the T pin disables the output buf/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+ez_usb_dout_t	src\\ez_usb_fx3_if.v	/^  output reg                       ez_usb_dout_t = 1'b1, \/\/A logic High on the T pin disables /;"	p	language:Verilog	module:ez_usb_fx3_if
+ez_usb_flaga	src\\ez_usb_fx2lp_if.v	/^  input             ez_usb_flaga,         \/\/ Not used$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+ez_usb_flaga	src\\ez_usb_fx3_if.v	/^  input                            ez_usb_flaga, \/\/addr 00, fpga -> usb, full flag, 1 = not fu/;"	p	language:Verilog	module:ez_usb_fx3_if
+ez_usb_flagb	src\\ez_usb_fx2lp_if.v	/^  input             ez_usb_flagb,         \/\/ addr 10, fpga -> usb, full flag, 1 = not full  0 /;"	p	language:Verilog	module:ez_usb_fx2lp_if
+ez_usb_flagb	src\\ez_usb_fx3_if.v	/^  input                            ez_usb_flagb, \/\/addr 01, usb -> fpga, empty flag, 1 = not e/;"	p	language:Verilog	module:ez_usb_fx3_if
+ez_usb_flagc	src\\ez_usb_fx2lp_if.v	/^  input             ez_usb_flagc,         \/\/ addr 00, usb -> fpga, empty flag, 1 = empty 0 = n/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+ez_usb_flagc	src\\ez_usb_fx3_if.v	/^  input                            ez_usb_flagc, \/\/addr 10, fpga -> usb, full flag, 1 = not fu/;"	p	language:Verilog	module:ez_usb_fx3_if
+ez_usb_flagd	src\\ez_usb_fx3_if.v	/^  input                            ez_usb_flagd, \/\/addr 11, usb -> fpga, empty flag, 1 = not e/;"	p	language:Verilog	module:ez_usb_fx3_if
+ez_usb_fx2lp_if	src\\ez_usb_fx2lp_if.v	/^module ez_usb_fx2lp_if($/;"	m	language:Verilog
+ez_usb_fx3_if	src\\ez_usb_fx3_if.v	/^module ez_usb_fx3_if($/;"	m	language:Verilog
+ez_usb_fx3_top	src\\ez_usb_fx3_top.v	/^module ez_usb_fx3_top($/;"	m	language:Verilog
+ez_usb_ifclk	src\\ez_usb_fx2lp_if.v	/^  output            ez_usb_ifclk,         \/\/ usb interface clk$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+ez_usb_pclk	src\\ez_usb_fx3_if.v	/^  output                           ez_usb_pclk, \/\/ usb interface clk$/;"	p	language:Verilog	module:ez_usb_fx3_if
+ez_usb_pktend_n	src\\ez_usb_fx2lp_if.v	/^  output            ez_usb_pktend_n,      \/\/ fpga -> usb packet end$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+ez_usb_pktend_n	src\\ez_usb_fx3_if.v	/^  output                           ez_usb_pktend_n, \/\/ fpga -> usb packet end$/;"	p	language:Verilog	module:ez_usb_fx3_if
+ez_usb_reset_n	src\\ez_usb_fx2lp_if.v	/^  output            ez_usb_reset_n,       \/\/ usb reset$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+ez_usb_reset_n	src\\ez_usb_fx3_if.v	/^  output                           ez_usb_reset_n,\/\/ usb reset$/;"	p	language:Verilog	module:ez_usb_fx3_if
+ez_usb_slcs_n	src\\ez_usb_fx2lp_if.v	/^  output            ez_usb_slcs_n,        \/\/ usb chip select, active low$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+ez_usb_slcs_n	src\\ez_usb_fx3_if.v	/^  output                           ez_usb_slcs_n, \/\/ usb chip select, active low$/;"	p	language:Verilog	module:ez_usb_fx3_if
+ez_usb_sloe_n	src\\ez_usb_fx2lp_if.v	/^  output            ez_usb_sloe_n,        \/\/ usb data bus output enable, this enable data from/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+ez_usb_sloe_n	src\\ez_usb_fx3_if.v	/^  output                           ez_usb_sloe_n, \/\/ usb data bus output enable, this enable d/;"	p	language:Verilog	module:ez_usb_fx3_if
+ez_usb_slrd_n	src\\ez_usb_fx2lp_if.v	/^  output            ez_usb_slrd_n,        \/\/ usb read enable, active low$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+ez_usb_slrd_n	src\\ez_usb_fx3_if.v	/^  output                           ez_usb_slrd_n, \/\/ usb read enable, active low$/;"	p	language:Verilog	module:ez_usb_fx3_if
+ez_usb_slwr_n	src\\ez_usb_fx2lp_if.v	/^  output            ez_usb_slwr_n,        \/\/ usb write enable$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+ez_usb_slwr_n	src\\ez_usb_fx3_if.v	/^  output                           ez_usb_slwr_n, \/\/ usb write enable$/;"	p	language:Verilog	module:ez_usb_fx3_if
+flaga	src\\ez_usb_fx3_top.v	/^    input flaga,$/;"	p	language:Verilog	module:ez_usb_fx3_top
+flagb	src\\ez_usb_fx3_top.v	/^    (*DONT_TOUCH = "yes"*)input flagb,$/;"	p	language:Verilog	module:ez_usb_fx3_top
+flagc	src\\ez_usb_fx3_top.v	/^    input flagc,$/;"	p	language:Verilog	module:ez_usb_fx3_top
+flagd	src\\ez_usb_fx3_top.v	/^    (*DONT_TOUCH = "yes"*)input flagd,$/;"	p	language:Verilog	module:ez_usb_fx3_top
 gbxGetData	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.GroupBox gbxGetData;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 gbxGetData	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.GroupBox gbxGetData;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 gbxInfo	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.GroupBox gbxInfo;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
@@ -152,6 +219,7 @@ gbxSendData	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Win
 gbxSendData	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.GroupBox gbxSendData;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 gbxUSBInstance	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.GroupBox gbxUSBInstance;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 gbxUSBInstance	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.GroupBox gbxUSBInstance;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+i	src\\ez_usb_fx3_top.v	/^    genvar i;$/;"	r	language:Verilog	module:ez_usb_fx3_top
 lblCheckPkgErr	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.Label lblCheckPkgErr;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 lblCheckPkgErr	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.Label lblCheckPkgErr;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 lblCmdFileName	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.Label lblCmdFileName;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
@@ -182,6 +250,16 @@ lblUsbName	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Wind
 lblUsbName	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.Label lblUsbName;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 lblXferQueue	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.Label lblXferQueue;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 lblXferQueue	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.Label lblXferQueue;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
+locked_o	src\\clk_gen.v	/^    output locked_o,$/;"	p	language:Verilog	module:clk_gen
+m_axis_tdata	src\\ez_usb_fx2lp_if.v	/^  output reg [15:0] m_axis_tdata = 16'h0, \/\/ USB to FPGA 16 bits data$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+m_axis_tdata	src\\ez_usb_fx3_if.v	/^  output  reg    [31:0]            m_axis_tdata = 32'h0,$/;"	p	language:Verilog	module:ez_usb_fx3_if
+m_axis_tdata	src\\ez_usb_fx3_top.v	/^    (*DONT_TOUCH = "yes", MARK_DEBUG = "TRUE"*) wire [31:0] m_axis_tdata;$/;"	n	language:Verilog	module:ez_usb_fx3_top
+m_axis_tready	src\\ez_usb_fx2lp_if.v	/^  input             m_axis_tready,        \/\/ FPGA ready to receive the data from USB$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+m_axis_tready	src\\ez_usb_fx3_if.v	/^  input                            m_axis_tready,$/;"	p	language:Verilog	module:ez_usb_fx3_if
+m_axis_tready	src\\ez_usb_fx3_top.v	/^    (*DONT_TOUCH = "yes", MARK_DEBUG = "TRUE"*)reg m_axis_tready = 1'b0;$/;"	r	language:Verilog	module:ez_usb_fx3_top
+m_axis_tvalid	src\\ez_usb_fx2lp_if.v	/^  output reg        m_axis_tvalid = 1'b0  \/\/ USB to FPGA data valid$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+m_axis_tvalid	src\\ez_usb_fx3_if.v	/^  output  reg                      m_axis_tvalid = 1'b0$/;"	p	language:Verilog	module:ez_usb_fx3_if
+m_axis_tvalid	src\\ez_usb_fx3_top.v	/^    (*DONT_TOUCH = "yes", MARK_DEBUG = "TRUE"*) wire m_axis_tvalid;$/;"	n	language:Verilog	module:ez_usb_fx3_top
 menuConfig	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.Menu menuConfig;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 menuConfig	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.Menu menuConfig;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 mitConfigDevice	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.MenuItem mitConfigDevice;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
@@ -190,6 +268,11 @@ mitConfigDevice_Click	UsbNewDaq\\MainWindow.xaml.cs	/^        private void mitCo
 mitResetDevice	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.MenuItem mitResetDevice;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 mitResetDevice	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.MenuItem mitResetDevice;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 mitResetDevice_Click	UsbNewDaq\\MainWindow.xaml.cs	/^        private void mitResetDevice_Click(object sender, RoutedEventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+pclk	src\\ez_usb_fx3_top.v	/^    output  pclk,$/;"	p	language:Verilog	module:ez_usb_fx3_top
+pktend_n	src\\ez_usb_fx2lp_if.v	/^  reg pktend_n;$/;"	r	language:Verilog	module:ez_usb_fx2lp_if
+pktend_n	src\\ez_usb_fx3_if.v	/^  reg pktend_n;$/;"	r	language:Verilog	module:ez_usb_fx3_if
+pktend_n	src\\ez_usb_fx3_top.v	/^    output pktend_n$/;"	p	language:Verilog	module:ez_usb_fx3_top
+pll_locked	src\\ez_usb_fx3_top.v	/^    wire pll_locked;$/;"	n	language:Verilog	module:ez_usb_fx3_top
 rdbBigEndian	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.RadioButton rdbBigEndian;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 rdbBigEndian	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.RadioButton rdbBigEndian;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 rdbBigEndian_Checked	UsbNewDaq\\MainWindow.xaml.cs	/^        private void rdbBigEndian_Checked(object sender, RoutedEventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
@@ -206,12 +289,40 @@ rdbFx3	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Window
 rdbLittleEndian	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.RadioButton rdbLittleEndian;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 rdbLittleEndian	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Windows.Controls.RadioButton rdbLittleEndian;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 rdbLittleEndian_Checked	UsbNewDaq\\MainWindow.xaml.cs	/^        private void rdbLittleEndian_Checked(object sender, RoutedEventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+reset	src\\clk_gen.v	/^    input reset,$/;"	p	language:Verilog	module:clk_gen
+reset_n	src\\ez_usb_fx3_top.v	/^    wire reset_n;$/;"	n	language:Verilog	module:ez_usb_fx3_top
 resourceCulture	UsbNewDaq\\Properties\\Resources.Designer.cs	/^        private static global::System.Globalization.CultureInfo resourceCulture;$/;"	f	language:C#	class:UsbNewDaq.Properties.Resources	file:
 resourceMan	UsbNewDaq\\Properties\\Resources.Designer.cs	/^        private static global::System.Resources.ResourceManager resourceMan;$/;"	f	language:C#	class:UsbNewDaq.Properties.Resources	file:
+rst	src\\ez_usb_fx2lp_if.v	/^  input             rst,$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+rst	src\\ez_usb_fx3_if.v	/^  input                            rst,$/;"	p	language:Verilog	module:ez_usb_fx3_if
+rst_n	src\\ez_usb_fx3_top.v	/^    input rst_n,$/;"	p	language:Verilog	module:ez_usb_fx3_top
+rst_usb	src\\ez_usb_fx3_top.v	/^    wire rst_usb;$/;"	n	language:Verilog	module:ez_usb_fx3_top
 rxByte	UsbNewDaq\\CheckStringFormat.cs	/^        private const string rxByte = @"\\b[0-9a-fA-F]{2}\\b";\/\/ Match 8 bit Hex$/;"	f	language:C#	class:UsbNewDaq.CheckStringFormat	file:
 rxDouble	UsbNewDaq\\CheckStringFormat.cs	/^        private const string rxDouble = @"^-?\\d+(\\.\\d+)?$";\/\/ Match double$/;"	f	language:C#	class:UsbNewDaq.CheckStringFormat	file:
 rxHex	UsbNewDaq\\CheckStringFormat.cs	/^        private const string rxHex = @"\\b[0-9a-fA-F]{1,}\\b";\/\/ Match 8 bytes Hex$/;"	f	language:C#	class:UsbNewDaq.CheckStringFormat	file:
 rxInteger	UsbNewDaq\\CheckStringFormat.cs	/^        private const string rxInteger = @"^\\d+$";   \/\/ Match positive integer$/;"	f	language:C#	class:UsbNewDaq.CheckStringFormat	file:
+s_axis_tdata	src\\ez_usb_fx2lp_if.v	/^  input [15:0]      s_axis_tdata,         \/\/ 16 bits data to USB$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+s_axis_tdata	src\\ez_usb_fx3_if.v	/^  input       [31:0]               s_axis_tdata,$/;"	p	language:Verilog	module:ez_usb_fx3_if
+s_axis_tdata	src\\ez_usb_fx3_top.v	/^    (* MARK_DEBUG = "TRUE" *) reg [31:0] s_axis_tdata = 'h0;$/;"	r	language:Verilog	module:ez_usb_fx3_top
+s_axis_tlast	src\\ez_usb_fx2lp_if.v	/^  input             s_axis_tlast,         \/\/ A pulse indicates that the last package is sent$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+s_axis_tlast	src\\ez_usb_fx3_if.v	/^  input                            s_axis_tlast,$/;"	p	language:Verilog	module:ez_usb_fx3_if
+s_axis_tlast	src\\ez_usb_fx3_top.v	/^    (* MARK_DEBUG = "TRUE" *) reg s_axis_tlast = 1'b0;$/;"	r	language:Verilog	module:ez_usb_fx3_top
+s_axis_tready	src\\ez_usb_fx2lp_if.v	/^  output reg        s_axis_tready = 1'b0, \/\/ USB ready to receive data. High indicates that th/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+s_axis_tready	src\\ez_usb_fx3_if.v	/^  output  reg                      s_axis_tready = 1'b0,$/;"	p	language:Verilog	module:ez_usb_fx3_if
+s_axis_tready	src\\ez_usb_fx3_top.v	/^    (* MARK_DEBUG = "TRUE" *) wire s_axis_tready;$/;"	n	language:Verilog	module:ez_usb_fx3_top
+s_axis_tvalid	src\\ez_usb_fx2lp_if.v	/^  input             s_axis_tvalid,        \/\/ Data to usb valid$/;"	p	language:Verilog	module:ez_usb_fx2lp_if
+s_axis_tvalid	src\\ez_usb_fx3_if.v	/^  input                            s_axis_tvalid,$/;"	p	language:Verilog	module:ez_usb_fx3_if
+s_axis_tvalid	src\\ez_usb_fx3_top.v	/^    (* MARK_DEBUG = "TRUE" *) reg s_axis_tvalid = 1'b0;$/;"	r	language:Verilog	module:ez_usb_fx3_top
+slcs_n	src\\ez_usb_fx3_top.v	/^    output slcs_n,$/;"	p	language:Verilog	module:ez_usb_fx3_top
+sloe_n	src\\ez_usb_fx2lp_if.v	/^  reg sloe_n; $/;"	r	language:Verilog	module:ez_usb_fx2lp_if
+sloe_n	src\\ez_usb_fx3_if.v	/^  reg sloe_n;$/;"	r	language:Verilog	module:ez_usb_fx3_if
+sloe_n	src\\ez_usb_fx3_top.v	/^    output sloe_n,$/;"	p	language:Verilog	module:ez_usb_fx3_top
+slrd_n	src\\ez_usb_fx2lp_if.v	/^  reg slrd_n;$/;"	r	language:Verilog	module:ez_usb_fx2lp_if
+slrd_n	src\\ez_usb_fx3_if.v	/^  reg slrd_n;$/;"	r	language:Verilog	module:ez_usb_fx3_if
+slrd_n	src\\ez_usb_fx3_top.v	/^    output slrd_n,$/;"	p	language:Verilog	module:ez_usb_fx3_top
+slwr_n	src\\ez_usb_fx2lp_if.v	/^  reg slwr_n;$/;"	r	language:Verilog	module:ez_usb_fx2lp_if
+slwr_n	src\\ez_usb_fx3_if.v	/^  reg slwr_n;$/;"	r	language:Verilog	module:ez_usb_fx3_if
+slwr_n	src\\ez_usb_fx3_top.v	/^    output slwr_n,$/;"	p	language:Verilog	module:ez_usb_fx3_top
 t1	UsbNewDaq\\MainWindow.xaml.cs	/^        DateTime t1, t2;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 t2	UsbNewDaq\\MainWindow.xaml.cs	/^        DateTime t1, t2;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 tbxCheckPkgErr	UsbNewDaq\\obj\\Debug\\MainWindow.g.cs	/^        internal System.Windows.Controls.TextBox tbxCheckPkgErr;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
@@ -235,4 +346,13 @@ tbxSpeed	UsbNewDaq\\obj\\Debug\\MainWindow.g.i.cs	/^        internal System.Wind
 usbDevices	UsbNewDaq\\MainWindow.xaml.cs	/^        USBDeviceList usbDevices;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
 usbDevices_DeviceAttached	UsbNewDaq\\MainWindow.xaml.cs	/^        void usbDevices_DeviceAttached(object sender, EventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
 usbDevices_DeviceRemoved	UsbNewDaq\\MainWindow.xaml.cs	/^        void usbDevices_DeviceRemoved(object sender, EventArgs e)$/;"	m	language:C#	class:UsbNewDaq.MainWindow	file:
+usb_init	src\\ez_usb_fx3_top.v	/^    input usb_init,$/;"	p	language:Verilog	module:ez_usb_fx3_top
+usb_init_led	src\\ez_usb_fx3_top.v	/^    output usb_init_led,$/;"	p	language:Verilog	module:ez_usb_fx3_top
+usb_next_state	src\\ez_usb_fx2lp_if.v	/^  reg [5:0] usb_next_state = IDLE;$/;"	r	language:Verilog	module:ez_usb_fx2lp_if
+usb_next_state	src\\ez_usb_fx3_if.v	/^  reg [8:0] usb_next_state = IDLE;$/;"	r	language:Verilog	module:ez_usb_fx3_if
+usb_reset	src\\ez_usb_fx3_top.v	/^    input usb_reset,$/;"	p	language:Verilog	module:ez_usb_fx3_top
+usb_reset_led	src\\ez_usb_fx3_top.v	/^    output usb_reset_led,$/;"	p	language:Verilog	module:ez_usb_fx3_top
+usb_state	src\\ez_usb_fx2lp_if.v	/^  reg [5:0] usb_state      = IDLE;$/;"	r	language:Verilog	module:ez_usb_fx2lp_if
+usb_state	src\\ez_usb_fx3_if.v	/^  reg [8:0] usb_state      = IDLE;$/;"	r	language:Verilog	module:ez_usb_fx3_if
+write_cnt	src\\ez_usb_fx3_if.v	/^  reg [7:0] write_cnt = 8'h00;$/;"	r	language:Verilog	module:ez_usb_fx3_if
 xferRate	UsbNewDaq\\MainWindow.xaml.cs	/^        double xferRate;$/;"	f	language:C#	class:UsbNewDaq.MainWindow	file:
