@@ -344,4 +344,5 @@ healthchecksdb
 *.asv
 out/
 Debug/
-obj/
+obj/*
+.vs/
